@@ -1,11 +1,16 @@
 import React from 'react';
 import './App.css';
+import { Provider } from './context';
+import Card from './components/cards/card';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+    <Provider>
+      <React.Fragment>
+        <h1>Hello world</h1>
+        <Card/>
+      </React.Fragment>
+    </Provider>
   );
 }
 
