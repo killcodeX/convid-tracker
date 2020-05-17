@@ -7,10 +7,12 @@ import Spinner from './components/spinner';
 function App() {
   return (
     <Provider>
-      <React.Fragment>
-        <h1>Hello world</h1>
-        <Spinner />
-        <Card/>
+      <React.Fragment className='section'>
+        <div className='container'>
+          <h1 className='title is-2'>Hello world</h1>
+          {/* <Spinner /> */}
+          <Card/>
+        </div>
       </React.Fragment>
     </Provider>
   );
