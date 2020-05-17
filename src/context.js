@@ -19,7 +19,6 @@ export class Provider extends Component {
 
         axios.get('https://covid19.mathdro.id/api/daily')
         .then(res => {
-            console.log(res.data)
             this.setState({ chart : res.data});
         })
         .catch(err => console.log(err))
