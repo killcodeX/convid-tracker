@@ -7,7 +7,7 @@ function Chart() {
 
     const [dailyData, setdailyData] = useState([]);
 
-    // console.log('dailydata--->>',confirm)
+    // dailyData.map(confirmed => console.log('dailydata--->>',confirmed.confirmed))
     const lineChart = (
         dailyData[0] ?
         (<Line 
@@ -31,7 +31,6 @@ function Chart() {
     return (
         <Consumer>
             {value => {
-                console.log('from context',value.chart)
                 if (!value.chart.length){
                     return <Spinner/>
                 }

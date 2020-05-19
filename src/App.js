@@ -3,7 +3,7 @@ import './App.css';
 import { Provider } from './context';
 import Card from './components/cards/card';
 import Chart from './components/charts/chart';
-import Spinner from './components/spinner';
+import Country from './components/country/country';
 import Banner from './components/banner.png';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
             <img className='banner' src={Banner}/>
           </div>
           <Card/>
+          <Country/>
           <Chart/>
         </div>
       </React.Fragment>

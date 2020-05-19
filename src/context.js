@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import Country from './components/country/country';
 
 const Context = React.createContext();
 
 export class Provider extends Component {
 
     state = {
-        data:{},
-        chart:{}
+        data : {},
+        chart : {},
+        countries : {}
     }
     componentDidMount(){
         axios.get('https://covid19.mathdro.id/api')
@@ -19,12 +21,19 @@ export class Provider extends Component {
 
         axios.get('https://covid19.mathdro.id/api/daily')
         .then(res => {
-            console.log('yeh h res se--->>', res)
             const result = res.data.map(({ confirmed, deaths, reportDate: date }) => ({ confirmed: confirmed.total, deaths: deaths.total, date }));
-            console.log('from result-->>>',result)
             this.setState({ chart : result});
         })
         .catch(err => console.log(err))
+
+        axios.get('https://covid19.mathdro.id/api/countries')
+        .then(res => {
+            console.log('yeh country ka res h', res)
+            const result = res.data;
+            this.setState({ countries : result});
+        })
+        .catch(err => console.log(err))
+
     }
 
     render() {
