@@ -4,22 +4,21 @@ import Spinner from '../spinner';
 
 function Country() {
 
-    const [country, Setcountry] = useState([]);
-    const [name, Setname] = useState({
-        countryName:''
-    });
+    const [country, setCountry] = useState([]);
+    const [name, setName] = useState('');
 
     // console.log('yeh country hookse h', country)
-    console.log('yeh name hook h',name.countryName)
+    // console.log('yeh name hook h',name)
 
     // 
     function Submit (e){
         e.preventDefault();
+        alert(`this form is submited ${name}`)
     }
 
-    const stateChange = (e) =>{
-        Setname({[e.target.name]:e.target.value});
-    }
+    // const stateChange = (e) =>{
+    //     Setname({[e.target.name]:e.target.value});
+    // }
 
     return (
         <Consumer>
@@ -29,7 +28,7 @@ function Country() {
                     return <Spinner/>
                 }
                 else{
-                    Setcountry(value.countries)
+                    setCountry(value.countries)
 
                     return (
                         <div className='columns'>
@@ -38,7 +37,7 @@ function Country() {
                                     <div className="field">
                                         <label className="label">Pick your Country</label>
                                         <div className="control has-icons-left has-icons-right">
-                                            <input className="input" type="text" placeholder="Enter Country name..." value={name.countryName} onChange={stateChange}/>
+                                            <input className="input" type="text" placeholder="Enter Country name..." value={name} onChange={e => setName(e.target.value)}/>
                                             <span className="icon is-small is-left">
                                                 <i className="fas fa-globe-asia"></i>
                                             </span>
