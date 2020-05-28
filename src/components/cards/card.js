@@ -19,7 +19,7 @@ function Card () {
                                     <div className='card-header'>
                                         <p className="card-header-title">Recovered</p>
                                     </div>
-                                    <div class="card-content">
+                                    <div className="card-content">
                                         <p className='title is-4'>
                                             <CountUp start={0} end={recovered.value} duration={2.5} separator=',' />
                                         </p>
@@ -33,7 +33,7 @@ function Card () {
                                     <div className='card-header'>
                                         <p className="card-header-title">Infected</p>
                                     </div>
-                                    <div class="card-content">
+                                    <div className="card-content">
                                         <p className='title is-4'>
                                             <CountUp start={0} end={confirmed.value} duration={2.5} separator=',' />
                                         </p>
@@ -47,7 +47,7 @@ function Card () {
                                     <div className='has-text-centered card-header is-3'>
                                         <p className="card-header-title">Deaths</p>
                                     </div>
-                                    <div class="card-content">
+                                    <div className="card-content">
                                         <p className='title is-4'>
                                             <CountUp start={0} end={deaths.value} duration={2.5} separator=',' />
                                         </p>

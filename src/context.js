@@ -28,9 +28,11 @@ export class Provider extends Component {
 
         axios.get('https://covid19.mathdro.id/api/countries')
         .then(res => {
-            console.log('yeh country ka res h', res)
-            const result = res.data;
-            this.setState({ countries : result});
+            console.log('yeh country ka res h', res.data.countries)
+            const { countries } = res.data;
+            // console.log('yesh country ka destructuring h',countries)
+
+            this.setState({ countries : countries.map( country => country.name)});
         })
         .catch(err => console.log(err))
 
