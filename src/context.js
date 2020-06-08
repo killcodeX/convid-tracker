@@ -4,12 +4,27 @@ import Country from './components/country/country';
 
 const Context = React.createContext();
 
+const reducer = (state, action) => {
+    switch(action.type) {
+        case 'SELECT_COUNTRY':
+            return {
+                ...state,
+                cont:action.payload
+            };
+        default:
+            return state;
+    }
+}
+
 export class Provider extends Component {
 
     state = {
         data : {},
         chart : {},
-        countries : {}
+        countries : {},
+        cont: '',
+        dispatch : action => this.setState(state =>
+            reducer(state,action))
     }
     componentDidMount(){
         axios.get('https://covid19.mathdro.id/api')

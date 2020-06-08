@@ -3,38 +3,31 @@ import { Consumer } from '../../context';
 import Spinner from '../spinner';
 
 function Country() {
-
-    const [country, setCountry] = useState([]);
     const [name, setName] = useState('');
 
-    // console.log('yeh country hookse h', country)
-    // console.log('yeh name hook h',name)
-
     // 
-    function Submit (e){
+    function Submit (e, dispatch){
         e.preventDefault();
         alert(`this form is submited ${name}`)
+
+        dispatch({type: 'SELECT_COUNTRY', payload: name});
         setName('')
     }
-
-    // const stateChange = (e) =>{
-    //     Setname({[e.target.name]:e.target.value});
-    // }
 
     return (
         <Consumer>
             { value =>{
-                // console.log('yeh context se h',value.countries)
                 if (!value.chart.length){
                     return <Spinner/>
                 }
                 else{
-                    setCountry(value.countries)
-
+                    // setCountry(value.countries)
+                    const { dispatch } = value;
+                    console.log('coming from dispatch',dispatch)
                     return (
                         <div className='columns'>
                             <div className='column'>
-                                <form onSubmit={Submit}>
+                                <form onSubmit={Submit.bind(dispatch)}>
                                     <div className="field">
                                         <label className="label">Pick your Country</label>
                                         <div className="control has-icons-left has-icons-right">
