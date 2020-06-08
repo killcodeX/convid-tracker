@@ -14,6 +14,7 @@ function Country() {
     function Submit (e){
         e.preventDefault();
         alert(`this form is submited ${name}`)
+        setName('')
     }
 
     // const stateChange = (e) =>{
