@@ -16,20 +16,29 @@ const reducer = (state, action) => {
     }
 }
 
+    const url = 'https://covid19.mathdro.id/api';
+    let changeableUrl =  url; 
+
 export class Provider extends Component {
 
     state = {
         data : {},
         chart : {},
         countries : {},
-        cont: '',
+        cont: 'hi',
         dispatch : action => this.setState(state =>
             reducer(state,action))
     }
+
+    // const checking = () => {
+    //     console.log('hi');
+    // }
+
     componentDidMount(){
-        axios.get('https://covid19.mathdro.id/api')
+            axios.get(changeableUrl)
             .then(res => {
-                // console.log(res.data)
+                console.log(res.data)
+                console.log(this.state.cont)
                 this.setState({ data : res.data});
             })
             .catch(err => console.log(err))
@@ -43,7 +52,7 @@ export class Provider extends Component {
 
         axios.get('https://covid19.mathdro.id/api/countries')
         .then(res => {
-            console.log('yeh country ka res h', res.data.countries)
+            // console.log('yeh country ka res h', res.data.countries)
             const { countries } = res.data;
             // console.log('yesh country ka destructuring h',countries)
 
@@ -51,6 +60,19 @@ export class Provider extends Component {
         })
         .catch(err => console.log(err))
 
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.cont !== this.state.cont){
+            console.log('componentdidupdate',this.state.cont);
+            axios.get(`${changeableUrl}/countries/${this.state.cont}`)
+            .then(res => {
+                // console.log(res.data)
+                // console.log(this.state.cont)
+                this.setState({ data : res.data});
+            })
+            .catch(err => console.log(err))
+        }
     }
 
     render() {

@@ -11,7 +11,8 @@ function Country() {
         alert(`this form is submited ${name}`)
 
         dispatch({type: 'SELECT_COUNTRY', payload: name});
-        setName('')
+
+        setName('');
     }
 
     return (
@@ -23,11 +24,11 @@ function Country() {
                 else{
                     // setCountry(value.countries)
                     const { dispatch } = value;
-                    console.log('coming from dispatch',dispatch)
+                    // console.log('coming from dispatch',dispatch)
                     return (
                         <div className='columns'>
                             <div className='column'>
-                                <form onSubmit={Submit.bind(dispatch)}>
+                                <form onSubmit={(e) => Submit(e,dispatch)}>
                                     <div className="field">
                                         <label className="label">Pick your Country</label>
                                         <div className="control has-icons-left has-icons-right">
