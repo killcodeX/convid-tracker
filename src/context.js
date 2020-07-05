@@ -23,22 +23,17 @@ export class Provider extends Component {
 
     state = {
         data : {},
+        countryData: null,
         chart : {},
         countries : {},
-        cont: 'hi',
+        cont: '',
         dispatch : action => this.setState(state =>
             reducer(state,action))
     }
 
-    // const checking = () => {
-    //     console.log('hi');
-    // }
-
     componentDidMount(){
             axios.get(changeableUrl)
             .then(res => {
-                console.log(res.data)
-                console.log(this.state.cont)
                 this.setState({ data : res.data});
             })
             .catch(err => console.log(err))
@@ -52,10 +47,7 @@ export class Provider extends Component {
 
         axios.get('https://covid19.mathdro.id/api/countries')
         .then(res => {
-            // console.log('yeh country ka res h', res.data.countries)
             const { countries } = res.data;
-            // console.log('yesh country ka destructuring h',countries)
-
             this.setState({ countries : countries.map( country => country.name)});
         })
         .catch(err => console.log(err))
@@ -64,12 +56,10 @@ export class Provider extends Component {
 
     componentDidUpdate(prevProps, prevState){
         if(prevState.cont !== this.state.cont){
-            console.log('componentdidupdate',this.state.cont);
             axios.get(`${changeableUrl}/countries/${this.state.cont}`)
             .then(res => {
-                // console.log(res.data)
-                // console.log(this.state.cont)
-                this.setState({ data : res.data});
+                console.log('coming from country api',res.data)
+                this.setState({ countryData : res.data});
             })
             .catch(err => console.log(err))
         }
